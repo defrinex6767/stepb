@@ -83,6 +83,40 @@ server.put('/product/:productId', (req, res) => {
     }
 })
 
+server.post('/freeordertracking', (req, res) => {
+    if (req.body.userId && req.body.productId) {
+        ordersTracking.push({ userId: parseInt(req.body.userId), productId: parseInt(req.body.productId), processDate: Date.now().toString() })
+        let product = products.find((element) => {
+            return (element.id == req.body.productId)
+        })
+        product.stockCount--
+        res.send('Added!')
+    }
+    else {
+        res.send('Invalid input')
+    }
+})
+
+server.post('/order', (req, res) => {
+    if (req.body.userId && req.body.productId) {
+        const userid = parseInt(req.body.userId)
+        const productId = parseInt(req.body.productId)
+        const amount = 1
+        const user = users.find((element) => { return (userid == element.id) })
+        if (user) {
+            const address = user.company != null ? company.find((element) => { return (user.company === company.companyName) }).deliveryAdress : user.delivery
+            orders.push({ userId: userid, productId: productId, amount: amount, address: address })
+            res.send('Succesfull')
+        }
+        else {
+            res.send('User is not exists')
+        }
+    }
+    else {
+        res.send('Invalid parameter')
+    }
+})
+
 
 server.get('/product/:productId', (req, res) => {
     if (!req.params.productId) {
