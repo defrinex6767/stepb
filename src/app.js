@@ -104,7 +104,7 @@ server.post('/order', (req, res) => {
         const amount = 1
         const user = users.find((element) => { return (userid == element.id) })
         if (user) {
-            const address = user.company != null ? company.find((element) => { return (user.company === company.companyName) }).deliveryAdress : user.delivery
+            const address = user.company != null ? companies.find((element) => { return (user.company === company.companyName) }).deliveryAdress : user.delivery
             orders.push({ userId: userid, productId: productId, amount: amount, address: address })
             res.send('Succesfull')
         }
