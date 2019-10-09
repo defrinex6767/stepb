@@ -1,6 +1,5 @@
 module.exports = () => {
-    const products = {
-        products :[
+    const products = [
             {
                 id:1,
                 stockCount:2,
@@ -9,7 +8,7 @@ module.exports = () => {
             {
                 id:2,
                 stockCount:1,
-                price:10
+                price:30
             },
             {
                 id:3,
@@ -17,6 +16,5 @@ module.exports = () => {
                 price:30
             }
         ]
-    }
     return products;
 }

@@ -1,6 +1,5 @@
 module.exports = () => {
-    const orderTracking = {
-        orders:[
+    const orderTracking = [
            /* {
                 userId:1,
                 productId:2,
@@ -27,6 +26,5 @@ module.exports = () => {
                 processDate:'1980'
             }*/
         ]
-    }
     return orderTracking;
 }

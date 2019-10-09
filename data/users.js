@@ -1,20 +1,22 @@
 const casual = require('casual')
 
 module.exports = () => {
-  const users = {
-    users:[
+  const users =[
       {
         type:'bireysel',
         id:1,
-        selectedProducts:[1,2,3]
+        selectedProducts:[1,2,3],
+        company:null,
+        delivery:'Buca'
       },
       {
         type:'kurumsal',
         id:2,
-        selectedProducts:[2,3]
+        selectedProducts:[2,3],
+        company:'Turkcell',
+        delivery:null
       }
     ]
-  }
   return users;
 }
 /*

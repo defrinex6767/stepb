@@ -1,8 +1,7 @@
 module.exports = () => {
-    const orders = {
-        orders:[{
+    const orders = [{
 
         }]
-    }
+
     return orders;
 }
