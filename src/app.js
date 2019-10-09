@@ -15,6 +15,11 @@ server.get('/user', (req, res) => {
     res.send(users);
 });
 
+var bodyParser = require('body-parser');
+server.use(express.urlencoded())
+server.use(bodyParser())
+
+
 const purchase = (userId, asd, options) => {
     const user = users.find((element) => element.id == userId)
     if (user) {
@@ -62,6 +67,17 @@ server.get('/user/:userid', (req, res) => {
     }
 })
 
+server.get('/calculate/fibonacci',(req,res) => {
+    let a=1, b=0, temp = 0
+    let num = 50000
+    while(num >= 0){
+       temp = a
+       a = a+b
+       b = a
+       num-- 
+    }
+})
+
 server.put('/product/:productId', (req, res) => {
     if (!req.params.productId) {
         res.send('Invalid product Id')
@@ -104,9 +120,11 @@ server.post('/order', (req, res) => {
         const amount = 1
         const user = users.find((element) => { return (userid == element.id) })
         if (user) {
-            const address = user.company != null ? companies.find((element) => { return (user.company === company.companyName) }).deliveryAdress : user.delivery
+            const address = user.company != null ? companies.find((element) => { return (user.company === element.companyName) }).deliveryAdress : user.delivery
             orders.push({ userId: userid, productId: productId, amount: amount, address: address })
             res.send('Succesfull')
+            console.log(orders)
+            console.log('log finished')
         }
         else {
             res.send('User is not exists')

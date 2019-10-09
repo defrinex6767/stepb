@@ -1,11 +1,11 @@
-var request = require('request');
-var users = []
-var orders = []
-var products = []
-var orderTracking = []
+const request = require('request-promise')
 
 
-request('https://stepb.free.beeceptor.com/users',{json:true},(error,res,body) => {
-        if(error) return console.log(error)
-        console.log(JSON.parse(body))
-})
+const purschase = (userId, products, options) => {
+        request('http://localhost:3000/user/' + userId, { json: true }).then(response => {
+                console.log(response)
+        })
+        console.log('kjahsdka')
+}
+
+purschase(1, 1, undefined)
